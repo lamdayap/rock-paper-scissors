@@ -1,0 +1,106 @@
+<DOCTYPE html>
+    <html>
+        <head>
+
+        </head>
+        <body>
+            <div style="margin:auto;display:table">
+            <h1>Rock, Paper, Scissors Game</h1>
+            <h3>Play in the Console by pressing F12 or Pressing Option+Command+I</h3>
+            <h3>When you've brought up the console press Play! to begin.</h3>
+            <input type="submit" value="Play!" id="play" style="width:50em;border:3px solid;font-weight:bold;background-color:slategrey;" onclick="game()">
+            </div>
+            <script type="text/javascript">
+                function game() {
+                    let computerScore = 0;
+                    let playerScore = 0;
+                    for (let counter = 0; counter < 5; counter++) {
+                        let winOrLose = playRound(playerSelection(), computerSelection());
+                        if (winOrLose == "win") {
+                            playerScore +=1;
+                            console.log("playerScore:" + playerScore);
+                        } else if (winOrLose == "lose")
+                        {
+                            computerScore +=1;
+                            console.log("computerScore:" + computerScore);
+                        } else {
+
+                        }
+                    }
+                    console.log(`your score was ${playerScore}, computer's score was ${computerScore}`)
+                    if (playerScore > computerScore) {
+                        console.log("You win this round")
+                    } else if (playerScore < computerScore) {
+                        console.log("You lose this round")
+                    } else {
+                        console.log("You drew this round")
+                    }
+                }
+
+                function playRound(playerSelection, computerSelection) {
+                    let win = `You win! ${playerSelection} beats ${computerSelection}`
+                    let lose = `You lose! ${computerSelection} beats ${playerSelection}`
+                    let draw = `Draw! You both chose ${playerSelection}`
+                    let result = "draw";
+                    if (playerSelection === 'rock') {
+                            switch(computerSelection) {
+                                case 'rock': console.log(draw);
+                                break;
+                                case 'paper': console.log(lose);
+                                result = "lose";
+                                break;
+                                case 'scissors': console.log(win);
+                                result = "win";
+                                break;
+                            }
+                    } else if (playerSelection === 'paper') {
+                             switch(computerSelection) {
+                                case 'rock': console.log(win);
+                                result = "win";
+                                break;
+                                case 'paper': console.log(draw);
+                                break;
+                                case 'scissors': console.log(lose);
+                                result = "lose";
+                                break;
+                            }
+                    }
+                    else {
+                             switch(computerSelection) {
+                                case 'rock': console.log(lose);
+                                result = "lose";
+                                break;
+                                case 'paper': console.log(win);
+                                result = "win";
+                                break;
+                                case 'scissors': console.log(draw);
+                                break;
+                            }
+                    }
+                    return result
+                }
+
+                function playerSelection() {
+                    let selected = prompt('Choose: Rock, Paper or Scissors').toLowerCase()
+                    return selected;
+                }
+
+                function computerSelection() {
+                    let selected = Math.floor(Math.random() * Math.floor(3)+1);
+                    switch(selected) {
+                        case 1:
+                            selected = 'rock'
+                            break;
+                        case 2:
+                            selected = 'paper'
+                            break;
+                        case 3:
+                            selected = 'scissors'
+                            break;
+                    }
+                    return selected;
+                }
+            </script>
+        </body>
+    </html>
+</DOCTYPE>
